@@ -1,0 +1,157 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f3f7fb;
+  color: #172033;
+}
+
+.header {
+  background: #0f5fa8;
+  color: white;
+  padding: 22px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.header p {
+  margin: 5px 0 0;
+  opacity: .85;
+}
+
+.status {
+  background: rgba(255,255,255,.15);
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.container {
+  width: min(1000px, 92%);
+  margin: 30px auto;
+  display: grid;
+  gap: 22px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #e3eaf2;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 5px 20px rgba(25, 50, 80, .06);
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  margin-top: 7px;
+  padding: 12px;
+  border: 1px solid #ccd7e4;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+button {
+  margin-top: 18px;
+  border: 0;
+  border-radius: 8px;
+  padding: 11px 18px;
+  background: #0f5fa8;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover {
+  opacity: .9;
+}
+
+.secondary {
+  margin: 0;
+  background: #eaf2f9;
+  color: #0f5fa8;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list {
+  display: grid;
+  gap: 12px;
+}
+
+.pass {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 15px;
+  display: grid;
+  gap: 8px;
+}
+
+.pass-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.badge {
+  padding: 5px 9px;
+  border-radius: 15px;
+  background: #fff3cd;
+  font-size: 12px;
+}
+
+.actions button {
+  margin: 0 6px 0 0;
+  padding: 7px 11px;
+  font-size: 12px;
+}
+
+.approve {
+  background: #198754;
+}
+
+.reject {
+  background: #dc3545;
+}
+
+#message {
+  font-size: 14px;
+}
+
+@media (max-width: 650px) {
+  .header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

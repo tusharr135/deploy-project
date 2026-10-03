@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GatePass Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div>
+      <h1>GatePass</h1>
+      <p>Simple visitor management system</p>
+    </div>
+    <span id="apiStatus" class="status">Checking API...</span>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Create Gate Pass</h2>
+
+      <form id="gatepassForm">
+        <div class="grid">
+          <label>
+            Visitor Name
+            <input id="visitor_name" required placeholder="Enter name">
+          </label>
+
+          <label>
+            Mobile
+            <input id="mobile" required maxlength="15" placeholder="Enter mobile">
+          </label>
+
+          <label>
+            Purpose
+            <input id="purpose" required placeholder="Meeting / Delivery">
+          </label>
+
+          <label>
+            Person to Meet
+            <input id="person_to_meet" required placeholder="Employee name">
+          </label>
+        </div>
+
+        <button type="submit">Create Gate Pass</button>
+        <p id="message"></p>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <h2>Gate Passes</h2>
+        <button id="refreshBtn" class="secondary">Refresh</button>
+      </div>
+
+      <div id="list" class="list">Loading...</div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
