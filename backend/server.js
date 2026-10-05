@@ -14,15 +14,15 @@ if (!process.env.SUPABASE_URL || !process.env.SUPABASE_KEY) {
   console.warn("SUPABASE_URL or SUPABASE_KEY is missing.");
 }
 
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_KEY,
-  {
-    realtime: {
-      transport: WebSocket
-    }
-  }
-);
+    const supabase = createClient(
+      process.env.SUPABASE_URL,
+      process.env.SUPABASE_KEY,
+      {
+        realtime: {
+          transport: WebSocket
+        }
+      }
+    );
 
 app.get("/", (req, res) => {
   res.json({
@@ -37,7 +37,7 @@ app.get("/api/health", (req, res) => {
 
 app.get("/api/gatepasses", async (req, res) => {
   const { data, error } = await supabase
-    .from("gatepasses")
+    .from("visitors")
     .select("*")
     .order("created_at", { ascending: false });
 
@@ -49,6 +49,8 @@ app.get("/api/gatepasses", async (req, res) => {
 });
 
 app.post("/api/gatepasses", async (req, res) => {
+  console.log("Received data:", req.body);
+
   const {
     visitor_name,
     mobile,
@@ -63,7 +65,7 @@ app.post("/api/gatepasses", async (req, res) => {
   }
 
   const { data, error } = await supabase
-    .from("gatepasses")
+    .from("visitors")
     .insert([{
       visitor_name,
       mobile,
@@ -75,34 +77,18 @@ app.post("/api/gatepasses", async (req, res) => {
     .single();
 
   if (error) {
-    return res.status(500).json({ error: error.message });
-  }
+    console.error("Supabase insert error:", error);
 
-  res.status(201).json(data);
-});
-
-app.patch("/api/gatepasses/:id/status", async (req, res) => {
-  const { status } = req.body;
-  const allowed = ["Pending", "Approved", "Rejected"];
-
-  if (!allowed.includes(status)) {
-    return res.status(400).json({
-      error: "Invalid status"
+    return res.status(500).json({
+      error: error.message,
+      details: error.details,
+      hint: error.hint
     });
   }
 
-  const { data, error } = await supabase
-    .from("gatepasses")
-    .update({ status })
-    .eq("id", req.params.id)
-    .select()
-    .single();
+  console.log("Created gate pass:", data);
 
-  if (error) {
-    return res.status(500).json({ error: error.message });
-  }
-
-  res.json(data);
+  res.status(201).json(data);
 });
 
 app.listen(PORT, () => {

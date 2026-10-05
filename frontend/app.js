@@ -17,7 +17,7 @@ async function checkAPI() {
   }
 }
 
-async function loadGatepasses() {
+async function loadgatepasses() {
   list.textContent = "Loading...";
 
   try {
@@ -76,7 +76,7 @@ form.addEventListener("submit", async (event) => {
 
     form.reset();
     message.textContent = "Gate pass created successfully.";
-    loadGatepasses();
+    loadgatepasses();
   } catch (error) {
     message.textContent = `Error: ${error.message}`;
   }
@@ -94,7 +94,7 @@ async function updateStatus(id, status) {
 
     if (!response.ok) throw new Error(data.error || "Update failed");
 
-    loadGatepasses();
+    loadgatepasses();
   } catch (error) {
     alert(error.message);
   }
@@ -109,7 +109,7 @@ function escapeHTML(value) {
     .replaceAll("'", "&#039;");
 }
 
-document.getElementById("refreshBtn").addEventListener("click", loadGatepasses);
+document.getElementById("refreshBtn").addEventListener("click", loadgatepasses);
 
 checkAPI();
-loadGatepasses();
+loadgatepasses();
