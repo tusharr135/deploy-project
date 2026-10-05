@@ -3,60 +3,504 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>GatePass Management</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header class="header">
-    <div>
-      <h1>GatePass</h1>
-      <p>Simple visitor management system</p>
-    </div>
-    <span id="apiStatus" class="status">Checking API...</span>
-  </header>
 
-  <main class="container">
-    <section class="card">
-      <h2>Create Gate Pass</h2>
+  <!-- Background Effects -->
+  <div class="bg-glow glow-one"></div>
+  <div class="bg-glow glow-two"></div>
 
-      <form id="gatepassForm">
-        <div class="grid">
-          <label>
-            Visitor Name
-            <input id="visitor_name" required placeholder="Enter name">
-          </label>
+  <div class="app-layout">
 
-          <label>
-            Mobile
-            <input id="mobile" required maxlength="15" placeholder="Enter mobile">
-          </label>
+    <!-- =================================================
+         SIDEBAR
+    ================================================== -->
 
-          <label>
-            Purpose
-            <input id="purpose" required placeholder="Meeting / Delivery">
-          </label>
+    <aside class="sidebar">
 
-          <label>
-            Person to Meet
-            <input id="person_to_meet" required placeholder="Employee name">
-          </label>
+      <!-- Logo -->
+      <div class="brand">
+
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2.5L19 5v6c0 4.5-2.8 8.2-7 10.1C7.8 19.2 5 15.5 5 11V5l7-2.5Z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
         </div>
 
-        <button type="submit">Create Gate Pass</button>
-        <p id="message"></p>
-      </form>
-    </section>
+        <div class="brand-text">
+          <h2>GatePass</h2>
+          <span>Visitor Management</span>
+        </div>
 
-    <section class="card">
-      <div class="section-head">
-        <h2>Gate Passes</h2>
-        <button id="refreshBtn" class="secondary">Refresh</button>
       </div>
 
-      <div id="list" class="list">Loading...</div>
-    </section>
-  </main>
 
+      <!-- Navigation -->
+      <nav class="sidebar-nav">
+
+        <button class="nav-item active">
+          <span class="nav-icon">⌂</span>
+          <span>Dashboard</span>
+        </button>
+
+        <button class="nav-item">
+          <span class="nav-icon">＋</span>
+          <span>Create Pass</span>
+        </button>
+
+        <button class="nav-item">
+          <span class="nav-icon">▣</span>
+          <span>Gate Passes</span>
+        </button>
+
+        <button class="nav-item">
+          <span class="nav-icon">♙</span>
+          <span>Visitors</span>
+        </button>
+
+        <button class="nav-item">
+          <span class="nav-icon">▥</span>
+          <span>Reports</span>
+        </button>
+
+        <button class="nav-item">
+          <span class="nav-icon">⚙</span>
+          <span>Settings</span>
+        </button>
+
+      </nav>
+
+
+      <!-- Security -->
+      <div class="security-card">
+
+        <div class="security-symbol">
+          ✓
+        </div>
+
+        <div>
+          <strong>Secure Access</strong>
+          <p>Safer premises · Better control</p>
+        </div>
+
+      </div>
+
+    </aside>
+
+
+    <!-- =================================================
+         MAIN CONTENT
+    ================================================== -->
+
+    <main class="main-content">
+
+
+      <!-- HEADER -->
+      <header class="top-header">
+
+        <div class="header-title">
+
+          <div class="small-heading">
+            GATEPASS DASHBOARD
+          </div>
+
+          <h1>Visitor Management</h1>
+
+          <p>
+            Manage visitors, create gate passes and keep your premises secure.
+          </p>
+
+        </div>
+
+
+        <div class="header-right">
+
+          <!-- Existing API status ID -->
+          <span id="apiStatus" class="status">
+            Checking API...
+          </span>
+
+          <div class="profile-circle">
+            TR
+          </div>
+
+        </div>
+
+      </header>
+
+
+
+      <!-- =================================================
+           STATISTICS
+      ================================================== -->
+
+      <section class="stats-grid">
+
+
+        <!-- Total Visitors -->
+
+        <div class="stat-card">
+
+          <div class="stat-icon blue">
+            ♙
+          </div>
+
+          <div class="stat-content">
+
+            <span>Total Visitors</span>
+
+            <strong id="totalVisitors">
+              128
+            </strong>
+
+            <small class="positive">
+              ↗ 12%
+              <em>vs last 7 days</em>
+            </small>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- Pending -->
+
+        <div class="stat-card">
+
+          <div class="stat-icon orange">
+            ◷
+          </div>
+
+          <div class="stat-content">
+
+            <span>Pending</span>
+
+            <strong id="pendingVisitors">
+              12
+            </strong>
+
+            <small class="warning">
+              ↗ Needs approval
+            </small>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- Approved -->
+
+        <div class="stat-card">
+
+          <div class="stat-icon green">
+            ✓
+          </div>
+
+          <div class="stat-content">
+
+            <span>Approved</span>
+
+            <strong id="approvedVisitors">
+              96
+            </strong>
+
+            <small class="positive">
+              ↗ 8%
+              <em>this week</em>
+            </small>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- Today -->
+
+        <div class="stat-card">
+
+          <div class="stat-icon purple">
+            ▣
+          </div>
+
+          <div class="stat-content">
+
+            <span>Today's Visitors</span>
+
+            <strong id="todayVisitors">
+              24
+            </strong>
+
+            <small class="positive">
+              ↗ 6%
+              <em>today</em>
+            </small>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- =================================================
+           MAIN TWO COLUMN AREA
+      ================================================== -->
+
+      <section class="dashboard-grid">
+
+
+        <!-- =================================================
+             CREATE GATE PASS
+        ================================================== -->
+
+        <section class="dashboard-card create-card">
+
+          <div class="card-heading">
+
+            <div class="heading-icon">
+              ＋
+            </div>
+
+            <div>
+
+              <h2>Create Gate Pass</h2>
+
+              <p>
+                Add visitor details to generate a gate pass
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- IMPORTANT:
+               Existing form ID maintained
+          -->
+
+          <form id="gatepassForm">
+
+            <div class="form-grid">
+
+
+              <!-- Visitor Name -->
+
+              <label class="form-field">
+
+                <span>Visitor Name</span>
+
+                <div class="input-wrapper">
+
+                  <span class="input-icon">
+                    ♙
+                  </span>
+
+                  <input
+                    id="visitor_name"
+                    required
+                    placeholder="Enter visitor name"
+                  >
+
+                </div>
+
+              </label>
+
+
+
+              <!-- Mobile -->
+
+              <label class="form-field">
+
+                <span>Mobile</span>
+
+                <div class="input-wrapper">
+
+                  <span class="input-icon">
+                    ☎
+                  </span>
+
+                  <input
+                    id="mobile"
+                    required
+                    maxlength="15"
+                    placeholder="Enter mobile"
+                  >
+
+                </div>
+
+              </label>
+
+
+
+              <!-- Purpose -->
+
+              <label class="form-field">
+
+                <span>Purpose</span>
+
+                <div class="input-wrapper">
+
+                  <span class="input-icon">
+                    ▣
+                  </span>
+
+                  <input
+                    id="purpose"
+                    required
+                    placeholder="Meeting / Delivery"
+                  >
+
+                </div>
+
+              </label>
+
+
+
+              <!-- Person -->
+
+              <label class="form-field">
+
+                <span>Person to Meet</span>
+
+                <div class="input-wrapper">
+
+                  <span class="input-icon">
+                    ♙
+                  </span>
+
+                  <input
+                    id="person_to_meet"
+                    required
+                    placeholder="Employee name"
+                  >
+
+                </div>
+
+              </label>
+
+            </div>
+
+
+            <!-- Submit -->
+
+            <button
+              type="submit"
+              class="create-button"
+            >
+
+              <span>➤</span>
+
+              Create Gate Pass
+
+            </button>
+
+
+            <!-- Existing message ID -->
+            <p id="message"></p>
+
+          </form>
+
+        </section>
+
+
+
+        <!-- =================================================
+             GATE PASSES
+        ================================================== -->
+
+        <section class="dashboard-card passes-card">
+
+
+          <div class="card-heading passes-heading">
+
+            <div class="heading-icon">
+              ≡
+            </div>
+
+            <div>
+
+              <h2>Recent Gate Passes</h2>
+
+              <p>
+                Latest visitor requests and status
+              </p>
+
+            </div>
+
+
+            <!-- Existing refresh ID -->
+            <button
+              id="refreshBtn"
+              class="refresh-button"
+            >
+              ↻ Refresh
+            </button>
+
+          </div>
+
+
+          <!-- Existing list ID -->
+          <div id="list" class="passes-list">
+
+            Loading...
+
+          </div>
+
+
+        </section>
+
+      </section>
+
+
+
+      <!-- Security decoration -->
+
+      <div class="security-decoration">
+
+        <div class="security-circle circle-one"></div>
+
+        <div class="security-circle circle-two"></div>
+
+        <div class="shield">
+
+          <svg viewBox="0 0 24 24">
+
+            <path d="M12 2.5L19 5v6c0 4.5-2.8 8.2-7 10.1C7.8 19.2 5 15.5 5 11V5l7-2.5Z"/>
+
+            <rect
+              x="9"
+              y="10"
+              width="6"
+              height="5"
+              rx="1"
+            />
+
+            <path d="M10.5 10V8.8a1.5 1.5 0 0 1 3 0V10"/>
+
+          </svg>
+
+        </div>
+
+      </div>
+
+
+    </main>
+
+  </div>
+
+
+  <!-- Existing JavaScript -->
   <script src="app.js"></script>
+
 </body>
 </html>

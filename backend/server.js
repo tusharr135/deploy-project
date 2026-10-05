@@ -94,3 +94,42 @@ app.post("/api/gatepasses", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`GatePass API running on port ${PORT}`);
 });
+
+
+app.get("/test-db", async (req, res) => {
+  const { data, error } = await supabase
+    .from("visitors")
+    .select("*")
+    .limit(1);
+
+  if (error) {
+    console.log(error);
+    return res.status(500).json(error);
+  }
+
+  res.json({
+    message: "Supabase connection successful",
+    data
+  });
+});
+
+app.patch("/api/gatepasses/:id/status", async (req, res) => {
+  const { status } = req.body;
+
+  const { data, error } = await supabase
+    .from("visitors")
+    .update({ status })
+    .eq("id", req.params.id)
+    .select()
+    .single();
+
+  if (error) {
+    console.error("Status update error:", error);
+
+    return res.status(500).json({
+      error: error.message
+    });
+  }
+
+  res.json(data);
+});
