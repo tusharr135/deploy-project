@@ -14,6 +14,7 @@ app.use(cors({
     ]
 }));
 app.use(express.json());
+app.use("/api/gatepasses", gatepassRoutes);
 
 if (!process.env.SUPABASE_URL || !process.env.SUPABASE_KEY) {
   console.warn("SUPABASE_URL or SUPABASE_KEY is missing.");
