@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3001;
 app.use(cors({
     origin: [
         "http://localhost:3002",
-        "https://deploy-project-frontend-omega.vercel.app/"
+        "https://deploy-project-frontend-omega.vercel.app"
     ]
 }));
 app.use(express.json());
