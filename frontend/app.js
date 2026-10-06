@@ -7,6 +7,74 @@ const list = document.getElementById("list");
 const message = document.getElementById("message");
 const apiStatus = document.getElementById("apiStatus");
 
+emailjs.init({
+    publicKey: "p2kHKE9hmFRVX4hHd"
+});
+// ===============================
+// GATE PASS FORM
+// ===============================
+
+const gatepassForm = document.getElementById("gatepassForm");
+
+gatepassForm.addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    // Get form values
+    const visitorName = document.getElementById("visitor_name").value;
+    const mobile = document.getElementById("mobile").value;
+    const purpose = document.getElementById("purpose").value;
+    const personToMeet = document.getElementById("person_to_meet").value;
+    const visitDate = document.getElementById("visit_date").value;
+    const visitTime = document.getElementById("visit_time").value;
+
+    // EmailJS template parameters
+    const templateParams = {
+
+        visitor_name: visitorName,
+
+        mobile: mobile,
+
+        purpose: purpose,
+
+        person_to_meet: personToMeet,
+
+        visit_date: visitDate,
+
+        visit_time: visitTime
+
+    };
+
+
+    try {
+
+        // Send email
+        await emailjs.send(
+            "service_wrde19w",
+            "template_9i027ga",
+            templateParams
+        );
+
+
+        // Success message
+        document.getElementById("message").textContent =
+            "Gate Pass created and email sent successfully!";
+
+
+        // Clear form
+        gatepassForm.reset();
+
+
+    } catch (error) {
+
+        console.error("EmailJS Error:", error);
+
+        document.getElementById("message").textContent =
+            "Gate Pass created, but email could not be sent.";
+
+    }
+
+});
 // Check backend API
 async function checkAPI() {
   try {
