@@ -17,79 +17,46 @@
 
   <div class="app-layout">
 
-    <!-- =================================================
-         SIDEBAR
-    ================================================== -->
+ <!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
 
-    <aside class="sidebar">
-
-      <!-- Logo -->
-      <div class="brand">
-
-        <div class="brand-icon">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 2.5L19 5v6c0 4.5-2.8 8.2-7 10.1C7.8 19.2 5 15.5 5 11V5l7-2.5Z"/>
-            <path d="M9 12l2 2 4-4"/>
-          </svg>
-        </div>
-
-        <div class="brand-text">
-          <h2>GatePass</h2>
-          <span>Visitor Management</span>
-        </div>
-
-      </div>
-
-
-      <!-- Navigation -->
-      <nav class="sidebar-nav">
-
-        <button class="nav-item active">
-          <span class="nav-icon">⌂</span>
-          <span>Dashboard</span>
+    <div class="sidebar-header">
+      
+        <button class="sidebar-toggle" id="sidebarToggle">
+            ☰
         </button>
+    </div>
 
-        <button class="nav-item">
-          <span class="nav-icon">＋</span>
-          <span>Create Pass</span>
-        </button>
+    <!-- Navigation -->
+    <nav class="sidebar-nav">
 
-        <button class="nav-item">
-          <span class="nav-icon">▣</span>
-          <span>Gate Passes</span>
-        </button>
+        <a href="index.html" class="nav-item active">
+            <span class="nav-icon">⌂</span>
+            <span class="nav-text">Dashboard</span>
+        </a>
 
-        <button class="nav-item">
-          <span class="nav-icon">♙</span>
-          <span>Visitors</span>
-        </button>
+        <a href="index.html" class="nav-item">
+            <span class="nav-icon">＋</span>
+            <span class="nav-text">Create Pass</span>
+        </a>
 
-        <button class="nav-item">
-          <span class="nav-icon">▥</span>
-          <span>Reports</span>
-        </button>
+        <a href="index.html" class="nav-item">
+            <span class="nav-icon">▣</span>
+            <span class="nav-text">Gate Passes</span>
+        </a>
 
-        <button class="nav-item">
-          <span class="nav-icon">⚙</span>
-          <span>Settings</span>
-        </button>
 
-      </nav>
+    </nav>
+
+</aside>
+
+
+<!-- Main Content -->
+
 
 
       <!-- Security -->
-      <div class="security-card">
 
-        <div class="security-symbol">
-          ✓
-        </div>
-
-        <div>
-          <strong>Secure Access</strong>
-          <p>Safer premises · Better control</p>
-        </div>
-
-      </div>
 
     </aside>
 
@@ -118,19 +85,6 @@
 
         </div>
 
-
-        <div class="header-right">
-
-          <!-- Existing API status ID -->
-          <span id="apiStatus" class="status">
-            Checking API...
-          </span>
-
-          <div class="profile-circle">
-            TR
-          </div>
-
-        </div>
 
       </header>
 
@@ -390,6 +344,20 @@
 
             </div>
 
+<div class="form-row">
+
+    <div class="form-group">
+        <label for="visit_date">Visit Date</label>
+        <input type="date" id="visit_date" required>
+    </div>
+
+    <div class="form-group">
+        <label for="visit_time">Visit Time</label>
+        <input type="time" id="visit_time" required>
+    </div>
+
+</div>
+
 
             <!-- Submit -->
 
@@ -501,6 +469,20 @@
 
   <!-- Existing JavaScript -->
   <script src="app.js"></script>
+
+  <script>
+    const sidebar = document.getElementById("sidebar");
+    const sidebarToggle = document.getElementById("sidebarToggle");
+    const mainContent = document.querySelector(".main-content");
+
+    sidebarToggle.addEventListener("click", () => {
+
+        sidebar.classList.toggle("collapsed");
+
+        mainContent.classList.toggle("sidebar-collapsed");
+
+    });
+</script>
 
 </body>
 </html>

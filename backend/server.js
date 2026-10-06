@@ -5,7 +5,7 @@ const { createClient } = require("@supabase/supabase-js");
 const WebSocket = require("ws");
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(express.json());
@@ -55,7 +55,9 @@ app.post("/api/gatepasses", async (req, res) => {
     visitor_name,
     mobile,
     purpose,
-    person_to_meet
+    person_to_meet,
+    visit_date,
+    visit_time,
   } = req.body;
 
   if (!visitor_name || !mobile || !purpose || !person_to_meet) {
@@ -71,6 +73,8 @@ app.post("/api/gatepasses", async (req, res) => {
       mobile,
       purpose,
       person_to_meet,
+      visit_date,
+      visit_time,
       status: "Pending"
     }])
     .select()

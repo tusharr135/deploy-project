@@ -15,7 +15,7 @@ gatepass-deployment-practice/
 ├── backend/
 │   ├── server.js
 │   ├── package.json
-│   ├── .env.example
+│   ├── .env
 │   └── .gitignore
 └── supabase/
     └── schema.sql
@@ -35,7 +35,7 @@ npm install
 Create `.env` from `.env.example`:
 
 ```env
-PORT=5000
+PORT=3001
 SUPABASE_URL=your_supabase_project_url
 SUPABASE_KEY=your_supabase_anon_or_publishable_key
 ```
@@ -47,16 +47,16 @@ npm start
 ```
 
 Backend runs at:
-http://localhost:5000
+http://localhost:3001
 
 Test:
-http://localhost:5000/api/health
+http://localhost:3001/api/health
 
 ### 3. Frontend
 In `frontend/app.js`, set:
 
 ```js
-const API_URL = "http://localhost:5000/api";
+const API_URL = "http://localhost:3001/api";
 ```
 
 Open `frontend/index.html` in a browser.

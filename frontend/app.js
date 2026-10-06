@@ -1,6 +1,6 @@
-// LOCAL: http://localhost:5000/api
+// LOCAL: http://localhost:3001/api
 // AFTER RENDER DEPLOYMENT: replace this with your Render API URL.
-const API_URL = "http://localhost:5000/api";
+const API_URL = "http://localhost:3001/api";
 
 const form = document.getElementById("gatepassForm");
 const list = document.getElementById("list");
@@ -85,7 +85,9 @@ form.addEventListener("submit", async (event) => {
     visitor_name: document.getElementById("visitor_name").value.trim(),
     mobile: document.getElementById("mobile").value.trim(),
     purpose: document.getElementById("purpose").value.trim(),
-    person_to_meet: document.getElementById("person_to_meet").value.trim()
+    person_to_meet: document.getElementById("person_to_meet").value.trim(),
+    visit_date: document.getElementById("visit_date").value,
+    visit_time: document.getElementById("visit_time").value
   };
 
   try {
