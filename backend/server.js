@@ -18,6 +18,7 @@ app.use(cors({
 app.use(express.json());
 
 
+
 if (!process.env.SUPABASE_URL || !process.env.SUPABASE_KEY) {
   console.warn("SUPABASE_URL or SUPABASE_KEY is missing.");
 }
