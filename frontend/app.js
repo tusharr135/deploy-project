@@ -1,6 +1,6 @@
 // LOCAL: http://localhost:3001/api
 // AFTER RENDER DEPLOYMENT: replace this with your Render API URL.
-const API_URL = "https://deploy-project-9aui.onrender.com/";
+const API_URL = "https://deploy-project-9aui.onrender.com";
 
 const form = document.getElementById("gatepassForm");
 const list = document.getElementById("list");
