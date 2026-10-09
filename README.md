@@ -528,3 +528,9 @@ Then deploy.
 Do NOT put Supabase keys or Render secrets directly into frontend JavaScript.
 
 For this practice project, the Supabase key is used only by the backend.
+
+
+## outputs:
+
+![alt text](image.png)
+![alt text](image-1.png)
