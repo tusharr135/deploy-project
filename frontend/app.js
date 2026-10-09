@@ -241,4 +241,3 @@ document
 // Initial load
 checkAPI();
 loadgatepasses();
-

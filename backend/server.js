@@ -7,8 +7,16 @@ const WebSocket = require("ws");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors());
+app.use(cors({
+    origin: [
+        "http://localhost:8080",
+        "http://localhost:3001",
+    ],
+    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
 app.use(express.json());
+
 
 if (!process.env.SUPABASE_URL || !process.env.SUPABASE_KEY) {
   console.warn("SUPABASE_URL or SUPABASE_KEY is missing.");
